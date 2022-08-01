@@ -2,12 +2,12 @@ import RPi.GPIO as GPIO
 import time, sys
 
 FLOW_SENSOR_GPIO = 21
+global count
+count = 0
+factor = 0.849399
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(FLOW_SENSOR_GPIO, GPIO.IN, pull_up_down = GPIO.PUD_UP)
-
-global count
-count = 0
 
 def countPulse(channel):
    global count
@@ -19,12 +19,12 @@ GPIO.add_event_detect(FLOW_SENSOR_GPIO, GPIO.FALLING, callback=countPulse)
 while True:
     try:
         start_counter = 1
-        time.sleep(0.125)
+        time.sleep(0.5)
         start_counter = 0
-        flow = (count / 0.849399)
-        print("%.6f lts/min" % (flow))
+        flow = (count / factor)
+        print("%.2f" % (flow)) #lts/min
         count = 0
-        time.sleep(0.125)
+        time.sleep(0.5)
     except KeyboardInterrupt:
         print('\nkeyboard interrupt!')
         GPIO.cleanup()

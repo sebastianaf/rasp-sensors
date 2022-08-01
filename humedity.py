@@ -6,5 +6,5 @@ pin = 20
 
 while True:
   hum, temp = Adafruit_DHT.read_retry(sensor, pin)
-  print("Humedity %.6f Temp ºC %.6f" % (hum,temp))
+  print("%.2f" % (hum)) #RH
   time.sleep(1)
