@@ -23,7 +23,7 @@ while True:
     voltage = ADS.toVoltage(digitalValue)
     samplesData.append(voltage)
     samplesCounter += 1
-    time.sleep(1/4800)
+    time.sleep(1/1000)
 
   rms = getRMS(samplesData)
   print("%.2f" % (rms*factor)) #Volts

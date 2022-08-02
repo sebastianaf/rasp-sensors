@@ -6,7 +6,7 @@ import math
 import ADS1x15
 
 analogInput = 1
-factor = 80
+factor = 53
 
 ADS = ADS1x15.ADS1015(1)
 ADS.setGain(ADS.PGA_1_024V)
@@ -25,7 +25,7 @@ while True:
 
     samplesData.append(voltage)
     samplesCounter += 1
-    time.sleep(1/4800)
+    time.sleep(1/1000)
 
   rms = getRMS(samplesData)
   print("%.2f" % (rms*factor)) #Amperes
